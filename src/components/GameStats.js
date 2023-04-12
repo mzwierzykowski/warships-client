@@ -1,4 +1,4 @@
-function GameStats() {
+function GameStats({stats}) {
     return (
         <div>
             GameStats component

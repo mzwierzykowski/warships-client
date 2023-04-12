@@ -1,7 +1,7 @@
-function Tile() {
+function Tile({point, handlePointClick}) {
     return (
         <div>
-            Tile component
+            {point.Id}
         </div>
     );
 }
