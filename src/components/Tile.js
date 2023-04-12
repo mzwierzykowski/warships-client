@@ -13,7 +13,6 @@ function Tile({point, handlePointClick}) {
     return (
         <div className="tile" onClick={handleClick}
             style={{backgroundColor: tileColors[point.state]}}>
-            {point.id}
         </div>
     );
 }
