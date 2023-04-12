@@ -1,7 +1,9 @@
-function Tile() {
+import './Tile.css';
+
+function Tile({point, handlePointClick}) {
     return (
-        <div>
-            Tile component
+        <div className="tile">
+            {point.id}
         </div>
     );
 }
