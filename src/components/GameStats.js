@@ -2,7 +2,7 @@ import './GameStats.css'
 
 function GameStats({stats}) {
     const shipStats = stats.shipStats.map((shipStat) => {
-        return (<div className="ship-stat">
+        return (<div className="ship-stat" key={shipStat.type}>
             <p className="ship-type">{shipStat.type}: {shipStat.leftInGameCount}/{shipStat.totalCount}</p>
         </div>);
     });
@@ -14,7 +14,7 @@ function GameStats({stats}) {
             <div className="game-counters">
                 <p className="shots-fired-counter">Shoots fired: {stats.shotsFired}</p>
                 <p className="total-hits-counter">Total Hits: {stats.totalHits}</p>
-                <p className="total-miss-counter">Total Miss: {stats.totalHits}</p>
+                <p className="total-miss-counter">Total Miss: {stats.totalMiss}</p>
             </div>
         </div>
     );
