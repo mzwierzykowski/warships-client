@@ -6,11 +6,12 @@ import axios from "axios";
 
 
 function App() {
-    const [board, setBoard] = useState({});
+    const [boardPoints, setBoardPoints] = useState([]);
+    const [boardDimension, setBoardDimension] = useState({width: 0, height: 0});
     const [isFinished, setIsFinished] = useState(false);
     const [stats, setGameStats] = useState({});
 
-    const handleClick = async (event) => {
+    const handleClick = async () => {
         console.log('clicked');
         var response = await axios.get('http://localhost:5248/game')
         updateGameState(response.data);
@@ -20,7 +21,8 @@ function App() {
     const updateGameState = (gameState) => {
         console.log('newGameStateReceived:', gameState);
         setIsFinished(gameState.isFinished);
-        setBoard(gameState.board);
+        setBoardPoints(gameState.board.points);
+        setBoardDimension(gameState.board.dimension)
         setGameStats(gameState.stats);
     }
     
@@ -35,7 +37,7 @@ function App() {
         <div>
             App component
             <button onClick={handleClick}>Start</button>
-            <Board board={board} handlePointClick={handlePointClick}/>
+            <Board dimension={boardDimension} points={boardPoints} handlePointClick={handlePointClick}/>
             <GameStats stats={stats}/>
         </div>
     );
