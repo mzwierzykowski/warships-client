@@ -14,13 +14,17 @@ function App() {
 
     const handleClick = async () => {
         var response = await axios.get('http://localhost:5248/game')
-        updateGameState(response.data);
-
+        .catch((error) => {
+            console.log('Error on API call: ' + error.message);
+        });
+        if(response) {
+            updateGameState(response.data);
+        }
     }
 
     const updateGameState = (gameState) => {
         console.log('newGameStateReceived:', gameState);
-        setIsFinished(gameState.isFinished);
+        setIsFinished(gameState.isfinished);
         setBoardPoints(gameState.board.points);
         setBoardDimension(gameState.board.dimension)
         setGameStats(gameState.stats);
@@ -30,8 +34,13 @@ function App() {
         if(isFinished === false) {
             var response = await axios.post('http://localhost:5248/game', {
                 pointId
+            })
+            .catch((error) => {
+                console.log('Error on API call: ' + error.message);
             });
-            updateGameState(response.data);
+            if(response) {
+                updateGameState(response.data);
+            }
         }
     }
 
