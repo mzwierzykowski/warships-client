@@ -11,7 +11,7 @@ function Board({points, dimension, handlePointClick}) {
     }
 
     return (
-        <div className="board-background" style={boardStyle}>
+        <div className="board-area" style={boardStyle}>
             <div className="board">
                 {renderedTiles}
             </div>

@@ -1,5 +1,14 @@
-.game-components {
-    padding-top: 20px;
+.components {
+    padding-left: 20px;
     display: flex;
     flex-flow: row wrap;
+}
+
+.board-component {
+    padding-top: 20px;
+}
+
+.panel {
+    padding-top: 20px;
+    margin-left: 20px;
 }

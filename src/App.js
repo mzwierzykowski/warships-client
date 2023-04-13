@@ -3,6 +3,7 @@ import { useState } from "react";
 import Board from "./components/Board";
 import GameStats from "./components/GameStats";
 import axios from "axios";
+import GameFinished from './components/GameFinished';
 
 
 
@@ -44,13 +45,22 @@ function App() {
         }
     }
 
+    let gameFinishedContent = <div></div>
+    if (isFinished) {
+        gameFinishedContent = <GameFinished/>
+    }
+
     return (
-        <div>
-            <button className="new-game-button" onClick={handleClick}>New game</button>
-            <div className="game-components">
+        <div className="components">
+            <div className="board-component">
                 <Board dimension={boardDimension} points={boardPoints} handlePointClick={handlePointClick}/>
+            </div>
+            <div className="panel">
+                <div className="game-finished">{gameFinishedContent}</div>
+                <button className="new-game-button" onClick={handleClick}>New game</button>
                 <GameStats stats={stats}/>
             </div>
+
         </div>
     );
 }
