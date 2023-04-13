@@ -3,6 +3,7 @@ import { useState } from "react";
 import Board from "./components/Board";
 import GameStats from "./components/GameStats";
 import axios from "axios";
+import GameFinished from './components/GameFinished';
 
 
 
@@ -14,34 +15,52 @@ function App() {
 
     const handleClick = async () => {
         var response = await axios.get('http://localhost:5248/game')
-        updateGameState(response.data);
-
+        .catch((error) => {
+            console.log('Error on API call: ' + error.message);
+        });
+        if(response) {
+            updateGameState(response.data);
+        }
     }
 
     const updateGameState = (gameState) => {
         console.log('newGameStateReceived:', gameState);
-        setIsFinished(gameState.isFinished);
+        setIsFinished(gameState.isfinished);
         setBoardPoints(gameState.board.points);
         setBoardDimension(gameState.board.dimension)
         setGameStats(gameState.stats);
     }
     
     const handlePointClick = async (pointId) => {
-        if(!isFinished) {
+        if(isFinished === false) {
             var response = await axios.post('http://localhost:5248/game', {
                 pointId
+            })
+            .catch((error) => {
+                console.log('Error on API call: ' + error.message);
             });
-            updateGameState(response.data);
+            if(response) {
+                updateGameState(response.data);
+            }
         }
     }
 
+    let gameFinishedContent = <div></div>
+    if (isFinished) {
+        gameFinishedContent = <GameFinished/>
+    }
+
     return (
-        <div>
-            <button className="new-game-button" onClick={handleClick}>New game</button>
-            <div className="game-components">
+        <div className="components">
+            <div className="board-component">
                 <Board dimension={boardDimension} points={boardPoints} handlePointClick={handlePointClick}/>
+            </div>
+            <div className="panel">
+                <div className="game-finished">{gameFinishedContent}</div>
+                <button className="new-game-button" onClick={handleClick}>New game</button>
                 <GameStats stats={stats}/>
             </div>
+
         </div>
     );
 }

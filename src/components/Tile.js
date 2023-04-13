@@ -2,13 +2,14 @@ import './Tile.css';
 
 function Tile({point, handlePointClick}) {
     const tileColors = [
-        'grey',
-        'blue',
-        'red'
+        '#f7ffff',
+        '#99bbff',
+        '#360c0c'
     ]
     const handleClick = () => {
-        console.log('Tile clicked: ', point.id)
-        handlePointClick(point.id);
+        if(point.state === 0) {
+            handlePointClick(point.id);
+        }
     }
     return (
         <div className="tile" onClick={handleClick}
