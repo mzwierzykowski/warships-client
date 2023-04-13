@@ -27,7 +27,7 @@ function App() {
     }
     
     const handlePointClick = async (pointId) => {
-        if(!isFinished) {
+        if(isFinished === false) {
             var response = await axios.post('http://localhost:5248/game', {
                 pointId
             });
