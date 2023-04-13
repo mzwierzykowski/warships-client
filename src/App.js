@@ -24,7 +24,6 @@ function App() {
     }
 
     const updateGameState = (gameState) => {
-        console.log('newGameStateReceived:', gameState);
         setIsFinished(gameState.isfinished);
         setBoardPoints(gameState.board.points);
         setBoardDimension(gameState.board.dimension)

@@ -15,26 +15,34 @@ function GameStats({stats}) {
             <div>
                 <div className="ship-stats">
                     <table>
-                        <tr>
-                            <th>Ship type</th>
-                            <th>Count</th>
-                            <th>Left</th>
-                        </tr>
-                        {shipStats}
+                        <thead>
+                            <tr>
+                                <th>Ship type</th>
+                                <th>Count</th>
+                                <th>Left</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {shipStats}
+                        </tbody>
                     </table>
                 </div>
                 <div className="game-counters">
                     <table>
-                        <tr>
-                            <th>Shoots</th> 
-                            <th>Hits</th>
-                            <th>Misses</th>
-                        </tr>
-                        <tr>
-                            <td>{stats.shotsFired}</td>
-                            <td>{stats.totalHits}</td>
-                            <td>{stats.totalMiss}</td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>Shoots</th> 
+                                <th>Hits</th>
+                                <th>Misses</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{stats.shotsFired}</td>
+                                <td>{stats.totalHits}</td>
+                                <td>{stats.totalMiss}</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
