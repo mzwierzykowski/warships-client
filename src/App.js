@@ -13,7 +13,6 @@ function App() {
     const [stats, setGameStats] = useState({shipStats: [], shotsFired:0, totalHits:0, totalMiss:0});
 
     const handleClick = async () => {
-        console.log('clicked');
         var response = await axios.get('http://localhost:5248/game')
         updateGameState(response.data);
 
@@ -28,10 +27,12 @@ function App() {
     }
     
     const handlePointClick = async (pointId) => {
-        var response = await axios.post('http://localhost:5248/game', {
-            pointId
-        });
-        updateGameState(response.data);
+        if(!isFinished) {
+            var response = await axios.post('http://localhost:5248/game', {
+                pointId
+            });
+            updateGameState(response.data);
+        }
     }
 
     return (
