@@ -57,7 +57,9 @@ function App() {
             </div>
             <div className="panel">
                 <div className="game-finished">{gameFinishedContent}</div>
-                <button className="new-game-button" onClick={handleClick}>New game</button>
+                <button className="new-game-button" onClick={handleClick}>
+                    <div className="button-text">New game</div>
+                </button>
                 <GameStats stats={stats}/>
             </div>
 

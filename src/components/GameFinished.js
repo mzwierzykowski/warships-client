@@ -2,7 +2,7 @@ import './GameFinished.css'
 function GameFinished() {
     return (
         <div className="game-finished-content">
-            <div className='title'>
+            <div className="title">
                 <h3>Victory!</h3>
             </div>
             <div className="text-content">

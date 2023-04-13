@@ -2,27 +2,48 @@ import './GameStats.css'
 
 function GameStats({stats}) {
     const shipStats = stats.shipStats.map((shipStat) => {
-        return (<div className="ship-stat" key={shipStat.type}>
-            <p className="ship-type">{shipStat.type}: {shipStat.leftInGameCount}/{shipStat.totalCount}</p>
-        </div>);
+        return (<tr className="ship-stat" key={shipStat.type}>
+            <td>{shipStat.type}</td> 
+            <td>{shipStat.totalCount}</td>
+            <td>{shipStat.leftInGameCount}</td>
+        </tr>);
     });
 
-    let counters = <div></div>;
+    let content = <div></div>;
     if(stats.shotsFired > 0) {
-        counters = (
-            <div className="game-counters">
-                <p className="shots-fired-counter">Shoots fired: {stats.shotsFired}</p>
-                <p className="total-hits-counter">Total Hits: {stats.totalHits}</p>
-                <p className="total-miss-counter">Total Miss: {stats.totalMiss}</p>
+        content = (
+            <div>
+                <div className="ship-stats">
+                    <table>
+                        <tr>
+                            <th>Ship type</th>
+                            <th>Count</th>
+                            <th>Left</th>
+                        </tr>
+                        {shipStats}
+                    </table>
+                </div>
+                <div className="game-counters">
+                    <table>
+                        <tr>
+                            <th>Shoots</th> 
+                            <th>Hits</th>
+                            <th>Misses</th>
+                        </tr>
+                        <tr>
+                            <td>{stats.shotsFired}</td>
+                            <td>{stats.totalHits}</td>
+                            <td>{stats.totalMiss}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
+
         );
     }
     return (
         <div className="game-stats-container">
-            <div className="ship-stats">
-                {shipStats}
-            </div>
-            {counters}
+            {content}
         </div>
     );
 }
